@@ -18,7 +18,7 @@ def generate_corpus(directory_path: str, create_txt_file: bool = True) -> (str):
         from paths import SOURCE
         file_name = 'text_corpus.txt'
         destination = os.path.join(SOURCE, file_name)
-        with open(destination, 'w', encoding='utf-8') as file:
-            file.write(text_corpus)
+        with open(destination, 'w', encoding='utf-8') as f:
+            f.write(text_corpus)
             
     return text_corpus

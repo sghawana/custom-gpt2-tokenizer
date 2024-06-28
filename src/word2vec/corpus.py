@@ -1,5 +1,5 @@
 import os
-def generate_corpus(directory_path: str) -> (str):
+def generate_corpus(directory_path: str, file_name: str = 'text_corpus.txt') -> (str):
     
     book_list = []
     for folder, _, files in os.walk(directory_path):  
@@ -15,7 +15,6 @@ def generate_corpus(directory_path: str) -> (str):
         text_corpus += temp
         
     from paths import SOURCE
-    file_name = 'text_corpus.txt'
     destination = os.path.join(SOURCE, file_name)
     with open(destination, 'w', encoding='utf-8') as f:
         f.write(text_corpus)

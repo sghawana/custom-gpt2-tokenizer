@@ -21,3 +21,7 @@ def generate_corpus(directory_path: str) -> (str):
         f.write(text_corpus)
     
     del text_corpus
+    
+    
+    
+    

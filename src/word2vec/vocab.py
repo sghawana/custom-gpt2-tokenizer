@@ -1,7 +1,6 @@
-import os
 import pickle
 
-def get_token_pair_counts(tokens_list):
+def get_token_pair_counts(tokens_list: list[int]) -> dict[tuple[int, int], int]:
     token_pair_counts = {}
     for i in range(1,len(tokens_list)):
         pair = (tokens_list[i-1],tokens_list[i])
@@ -12,7 +11,7 @@ def get_token_pair_counts(tokens_list):
     return token_pair_counts
 
 
-def merge_tokens(tokens_list, pair, new_token):
+def merge_tokens(tokens_list: list[int], pair: tuple[int, int], new_token: int) -> list[int]:
     i = 1
     while i < len(tokens_list):
         if (tokens_list[i-1], tokens_list[i]) == pair:
@@ -22,9 +21,12 @@ def merge_tokens(tokens_list, pair, new_token):
             i += 1
     return tokens_list
 
+def unmerge_tokens(tokens_list: list[int], pair: tuple[int, int], new_token: int) -> list[int]:
+    ...
 
-def generate_merges(tokens_list, num_merges=25):
 
+
+def generate_merges(tokens_list: list[int], num_merges: int) -> dict[tuple[int, int], int]:
     merges = {}
     i = 256
     count = 0
@@ -35,8 +37,8 @@ def generate_merges(tokens_list, num_merges=25):
         merges[merge_pair] = i
         i += 1
         count += 1
-    
     return merges
+        
         
 def build_vocab(corpus_path, num_merges, destination):
     

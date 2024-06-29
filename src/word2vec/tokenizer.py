@@ -1,20 +1,15 @@
 import os
 import pickle
+import torch
 
-from paths import DATASET_DIRECTORY, SOURCE
-from corpus import generate_corpus
-
-from vocab import get_token_pair_counts, merge_tokens, generate_merges
-from corpus import generate_corpus
-
-CORPUS_NAME = 'text_corpus.txt'
-NUM_MERGES = 50
+from help_functions import merge_tokens, unmerge_tokens, generate_merges
 
 class Tokenizer:
     def __init__(self) -> None:
         self.vocab = None
         self.special = None
         self.merges = None
+        self.device = torch.device('mps' if torch.backends.mps.is_available() else 'cpu')
         
     @classmethod
     def load(cls, path):
@@ -32,21 +27,31 @@ class Tokenizer:
             pickle.dump(self, pkl_file)
             
     
-    def train(self, corpus, vocab_size):
-        ...
+    def train(self, corpus_path, vocab_size):
         
-    def encode(self, string):
+        with open(corpus_path) as f: corpus = f.read()
+        tokens = torch.tensor(list(corpus.encode('utf-8', errors='replace')), dtype=torch.int32, device=self.device)
         
-        encodings = string.encode("utf-8", errors='replace')
+        unique_tokens = torch.unique(tokens)
+        vocab = {token.item():i for i,token in enumerate(unique_tokens)}
+        num_merges = max(0, vocab_size - len(vocab))
+        self.merges = generate_merges(tokens, num_merges)
+        
+        n = len(vocab)
+        for i, new_token in enumerate(self.merges.values()):
+            vocab[new_token] = n + i
+        self.vocab = vocab
+        
+    def encode(self, string: str) -> torch.Tensor:
+        tokens = torch.tensor(list(string.encode("utf-8", errors='replace')), dtype=torch.int32, device=self.device)
         for pair, target in self.merges.items():
-            merge_tokens(encodings, pair, target)
-            
-        return encodings
+            tokens = merge_tokens(tokens, pair, target)
+        return tokens
     
-    def decode(self, tokens):
-        
-        for 
-            
-        
+    def decode(self, tokens: torch.Tensor) -> str:
+        for pair, target in reversed(list(self.merges.items())):
+            tokens = unmerge_tokens(tokens, pair, target)
+        string = bytes(tokens.tolist()).decode('utf-8', errors='replace')
+        return string
         
         

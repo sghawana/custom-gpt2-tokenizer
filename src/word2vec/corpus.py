@@ -1,4 +1,6 @@
 import os
+from paths import SOURCE, DATASET_DIRECTORY
+
 def generate_corpus(directory_path: str, file_name: str = 'text_corpus.txt') -> (str):
     
     book_list = []
@@ -14,13 +16,14 @@ def generate_corpus(directory_path: str, file_name: str = 'text_corpus.txt') -> 
         with open(path, 'r', encoding='utf-8', errors='ignore') as f: temp = f.read()
         text_corpus += temp
         
-    from paths import SOURCE
     destination = os.path.join(SOURCE, file_name)
     with open(destination, 'w', encoding='utf-8') as f:
         f.write(text_corpus)
     
     del text_corpus
     
-    
-    
-    
+
+
+# -----------> Run the command below to generate corpus.txt
+
+## generate_corpus(DATASET_DIRECTORY)  

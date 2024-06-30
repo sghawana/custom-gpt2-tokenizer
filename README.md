@@ -6,7 +6,7 @@ repo Link: https://github.com/sghawana/end-2-end-embeddings-generator.git
 
 
 
-##valid utf-8 token Sequences
+## valid utf-8 token Sequences
 
 | **1 Token** | (0-127) |  |  |  |
 |---------------------|-----------------|-----------------|-----------------|-----------------|

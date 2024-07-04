@@ -24,6 +24,6 @@ def generate_corpus(directory_path: str, file_name: str = 'text_corpus.txt') -> 
     
 
 
-# -----------> Run the command below to generate corpus.txt
+# -----------> Run the command below to generate corpus.txt from 
 
 ## generate_corpus(DATASET_DIRECTORY)  

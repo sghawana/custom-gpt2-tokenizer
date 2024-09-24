@@ -21,8 +21,8 @@ This README describes a GPT-2 style tokenizer implemented using the Byte Pair En
 
 ### Usage
 
-1. Initialise variables in paths.py
-    DIRECTORY: /path/to/main/directory
+1. Initialise variables in paths.py<br>
+    DIRECTORY: /path/to/main/directory<br>
     SOURCE: /source/folder/containing/all/files
 
 **Note**: The specified directory can include .txt files or subdirectories, they will be processed accordingly.

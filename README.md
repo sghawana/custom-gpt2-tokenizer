@@ -1,6 +1,9 @@
 # BPE tokenizer
 
-## valid utf-8 token Sequences
+This README describes a GPT-2 style tokenizer implemented using the Byte Pair Encoding (BPE) algorithm. The tokenizer is designed to handle UTF-8 encoded text, with specific considerations for various Unicode ranges.
+
+---
+### Valid utf-8 token Sequences
 
 | **Unicode Index** | **No. of Bytes** | **Byte1** | **Byte2** | **Byte3** | **Byte4** |
 |---------------------|---------------------|-----------------|-----------------|-----------------|-----------------|
@@ -13,5 +16,30 @@
 - Decimal representation for each byte
 - English Characters: 1 token
 - Hindi Characters: 3 Tokens
-  
+---
+
+
+### Usage
+
+1. Initialise variables in paths.py
+    DIRECTORY: /path/to/main/directory
+    SOURCE: /source/folder/containing/all/files
+
+**Note**: The specified directory can include .txt files or subdirectories, they will be processed accordingly.
+
+
+2. The tokenizer trains on raw .txt files. Run the following command in corpus.py to generate training corpus
+
+```
+generate_corpus(DIRECTORY)
+```
+
+
+3. To train the tokenizer of required vocabulary size 
+```
+tok = Tokenizer()
+tok.train(SOURCE, Vocab_size)
+```
+---
+
 

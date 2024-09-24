@@ -15,3 +15,5 @@ dataset
 #corpus
 src/text_corpus.txt
 src/sample.txt
+
+.DS_Store

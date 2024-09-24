@@ -10,6 +10,8 @@
 | Rest | 4 | (240-247) | (128-191) | (128-191) | (128-191) |
 
 
+- Decimal representation for each byte
 - English Characters: 1 token
 - Hindi Characters: 3 Tokens
   
+
